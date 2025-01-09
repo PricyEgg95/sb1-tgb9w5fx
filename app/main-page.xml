@@ -1,0 +1,21 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Family Tree" icon="" />
+    
+    <GridLayout rows="*, auto">
+        <ScrollView row="0">
+            <StackLayout class="p-4">
+                <Label text="Family Members" class="text-xl font-bold mb-4" />
+                <ListView items="{{ people }}" itemTap="{{ onPersonTap }}" height="100%">
+                    <ListView.itemTemplate>
+                        <StackLayout class="p-2 border-b border-gray-200">
+                            <Label text="{{ firstName + ' ' + lastName }}" class="text-lg" />
+                            <Label text="{{ birthDate | date }}" class="text-sm text-gray-500" />
+                        </StackLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+        
+        <Button row="1" text="Add Person" tap="{{ onAddPerson }}" class="btn btn-primary m-4" />
+    </GridLayout>
+</Page>

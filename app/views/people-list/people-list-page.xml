@@ -1,0 +1,21 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Family Tree">
+        <ActionItem tap="onAddTap" ios.position="right" android.position="actionBar">
+            <Label text="+" class="action-item" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout>
+        <ListView items="{{ people }}" itemTap="onItemTap">
+            <ListView.itemTemplate>
+                <GridLayout columns="*, auto" class="list-item p-10">
+                    <StackLayout col="0">
+                        <Label text="{{ firstName + ' ' + lastName }}" class="font-bold" />
+                        <Label text="{{ birthDate, 'Born: ' + birthDate }}" class="text-muted" />
+                    </StackLayout>
+                    <Image col="1" src="{{ photoUrl }}" class="thumb" visibility="{{ photoUrl ? 'visible' : 'collapsed' }}" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

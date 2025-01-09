@@ -1,0 +1,37 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="{{ person.firstName + ' ' + person.lastName }}">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <ActionItem text="Edit" tap="{{ onEditTap }}" ios.position="right" android.position="actionBar" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Image src="{{ person.photoUrl }}" class="w-32 h-32 rounded-full mb-4" 
+                  visibility="{{ person.photoUrl ? 'visible' : 'collapsed' }}" />
+            
+            <GridLayout columns="auto, *" rows="auto, auto, auto" class="mb-4">
+                <Label text="Name:" class="font-bold" row="0" col="0" />
+                <Label text="{{ person.firstName + ' ' + person.lastName }}" row="0" col="1" />
+                
+                <Label text="Birth:" class="font-bold" row="1" col="0" />
+                <Label text="{{ birthDateFormatted }}" row="1" col="1" />
+                
+                <Label text="Death:" class="font-bold" row="2" col="0" 
+                       visibility="{{ person.deathDate ? 'visible' : 'collapsed' }}" />
+                <Label text="{{ deathDateFormatted }}" row="2" col="1" 
+                       visibility="{{ person.deathDate ? 'visible' : 'collapsed' }}" />
+            </GridLayout>
+            
+            <Label text="Relations" class="text-xl font-bold mt-4 mb-2" />
+            <ListView items="{{ relations }}" height="auto">
+                <ListView.itemTemplate>
+                    <StackLayout class="p-2 border-b border-gray-200">
+                        <Label text="{{ relationType + ': ' + personName }}" class="text-lg" />
+                    </StackLayout>
+                </ListView.itemTemplate>
+            </ListView>
+            
+            <Button text="Add Relation" tap="{{ onAddRelation }}" class="btn btn-primary mt-4" />
+        </StackLayout>
+    </ScrollView>
+</Page>

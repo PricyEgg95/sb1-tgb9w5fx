@@ -1,0 +1,31 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="{{ isEditing ? 'Edit Person' : 'Add Person' }}">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <GridLayout columns="*, auto" rows="auto" class="mb-4">
+                <Image src="{{ photoUrl }}" tap="{{ onSelectPhoto }}" 
+                       class="w-32 h-32 rounded-full" row="0" col="0" />
+                <Button text="Select Photo" tap="{{ onSelectPhoto }}" 
+                        class="btn btn-outline" row="0" col="1" />
+            </GridLayout>
+            
+            <TextField hint="First Name" text="{{ firstName }}" class="input mb-2" />
+            <TextField hint="Last Name" text="{{ lastName }}" class="input mb-2" />
+            
+            <Label text="Birth Date" class="font-bold mt-2" />
+            <DatePicker date="{{ birthDate }}" class="mb-2" />
+            
+            <Label text="Death Date (optional)" class="font-bold mt-2" />
+            <DatePicker date="{{ deathDate }}" class="mb-4" />
+            
+            <Button text="{{ isEditing ? 'Save Changes' : 'Add Person' }}" 
+                    tap="{{ onSave }}" class="btn btn-primary" />
+            
+            <Button text="Cancel" tap="{{ onCancel }}" 
+                    class="btn btn-outline mt-2" />
+        </StackLayout>
+    </ScrollView>
+</Page>
